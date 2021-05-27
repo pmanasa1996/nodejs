@@ -1,0 +1,2 @@
+this file created by nodejs 
+welcome to nodejs class
