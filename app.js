@@ -56,9 +56,16 @@ yargs.parse();
      },
 
      handler:function(argv){
-        notes.removeNote(argv.title)
+        //notes.removeNote(argv.title)
      }
  })
+ yargs.command({
+    command:'list',
+        describe:'listing  note',
+         handler:function(argv){
+             notes.listNotes();
+         }
+    })
  yargs.parse();
 
 // yargs.command({
@@ -76,6 +83,7 @@ yargs.parse();
 //         console.log('reading note..')
 //     }
 // })
+
 
 
 

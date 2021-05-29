@@ -1,6 +1,7 @@
 const fs=require('fs');
 const yargs=('yargs');
 const chalk=require('chalk');
+const { title } = require('process');
 // console.log('notes.js')
 
 //     return 'this is your notes...'
@@ -35,6 +36,8 @@ const chalk=require('chalk');
            console.log(chalk.red.inverse('note found'));
        }
    }
+
+
    const loadNotes=function(){
        try{
         const dataBuffer=fs.readFileSync('1-json.json')
@@ -52,6 +55,28 @@ const saveNotes=function(notes){
     const jsondata=JSON.stringify(notes)
     fs.writeFileSync('1-json.json',jsondata)
 }
-module.exports={addNote:addNote,
-    removeNote:removeNote
+
+
+const listNotes=()=>{
+    const notes=loadNotes()
+    console.log(chalk.inverse('your notes'));
+    notes.forEach((note)=>{
+        console.log("title:"+chalk.red(note.body))
+    });
+}
+const readNote=function(title){
+    const notes=loadNotes();
+    const note=notes.find((note)=>note.title===title)
+    if(note){
+        console.log(chalk.green(note.title)+":"+chalk.blue(note.body));
+    }
+    else{
+        console.log(chalk.red.inverse("note not found!"));
+    }
+}
+module.exports={
+    addNote:addNote,
+    removeNote:removeNote,
+    listNotes:listNotes,
+    readNote:readNote
 }
