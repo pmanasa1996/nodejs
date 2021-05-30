@@ -74,9 +74,11 @@ const readNote=function(title){
         console.log(chalk.red.inverse("note not found!"));
     }
 }
+async.parallel(['notes','1-json'],fs.stat,function(err,results){})
 module.exports={
     addNote:addNote,
     removeNote:removeNote,
     listNotes:listNotes,
     readNote:readNote
 }
+
